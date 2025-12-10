@@ -1,0 +1,183 @@
+#inventory_items{
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    flow-children: none;
+    height: 100%;
+    horizontal-align: left;
+    background-image: url( "s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
+    background-size: 100%;
+    background-color: #211;
+    vertical-align: top;
+}
+#ItemManaCost{
+    color: #57b7ff;
+    font-size: 14px;
+    text-shadow: 0px 0px 3px 3.0 #000000;
+    vertical-align: bottom ;
+    horizontal-align: right;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    text-overflow: shrink;
+}
+#InventoryContainer{
+    width: 100%;
+    height: 100%;
+}
+#InventoryBG{
+    width: 100%;
+    height: 105px;
+    background-image: url( "s2r://panorama/images/hud/reborn/inventory_bg_psd.vtex");
+    background-size: 100%;
+    border-bottom: 1px solid #000e;
+    background-repeat: no-repeat;
+}
+#HUDSkinInventoryBG{
+    width: 100%;
+    height: 276px;
+    background-size: 100%;
+    vertical-align: bottom;
+    visibility: collapse;
+    background-size: 150% 147%;
+    background-position: 0% -62px;
+    background-repeat: no-repeat;
+    transform: scaleX(-1);
+    overflow: clip;
+}
+#inventory_list_container{
+    flow-children: down;
+    padding-left: 3px;
+    padding-top: 6px;
+    z-index: 1;
+}
+#inventory_list{
+    flow-children: right;
+    padding: 0px;
+    width: 200px;
+    height: 50px;
+}
+#inventory_list2{
+    margin-top: -2px;
+    flow-children: right;
+    padding: 0px;
+    width: 200px;
+    height: 50px;
+}
+
+//技能进入CD
+#Cooldown{
+    width: 100%;
+    height: 100%;
+    margin: 3px;
+}
+#ItemButton{
+    width: 100%;
+    height: 100%;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #00000000 ), to( #00000000 ) );
+    transition-property: pre-transform-scale2d, brightness, saturation, background-color, opacity;
+    transition-duration: .06s, .1s;
+    transition-timing-function: ease-out;
+}
+.ItemBevel{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    background-image: url("s2r://panorama/images/hud/reborn/inventory_item_bevel_psd.vtex");
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    z-index: 1;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #00FF0000 ), to( #00FF0000 ) );
+    visibility: visible;
+    transition-property: brightness, background-color;
+    transition-duration: .12s;
+    transition-timing-function: ease-in;
+}
+#ItemCooldownTimer{
+    font-size: 16px;
+    text-shadow: 0px 0px 3px 3.7 #000000FF;
+    margin-top:1px;
+    color: white;
+    width: 100%;
+     text-align: center;
+    vertical-align: center;
+    text-overflow: shrink;
+}
+.hover{
+    brightness: 1.6;
+}
+#InventoryButton{
+    visibility: visible;
+    background-color:none;
+    z-index: 1;
+    flow-children:none;
+}
+#InventoryItem{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+#InventoryButtonWell{
+    width: fit-children;
+    height: fit-children;
+    background-size: 0px;
+    vertical-align: bottom;
+    background-image: url( "s2r://panorama/images/hud/reborn/active_ability_border_psd.vtex");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+#InventoryButtonSize{
+    width: 60px;
+    height: 45px;
+    background-size: cover;
+    overflow: noclip;
+    background-color: #1a1c1d88;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    box-shadow: fill #000000aa 0px 0px 2px 0px ;
+    background-image:none;
+    horizontal-align: center;
+    vertical-align: middle;
+    transition-property: box-shadow;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+}
+
+#InventoryItemContainer{
+    margin-left:-1px;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+
+}
+#InventoryItemHotkey{
+    margin-top: -2px;
+    margin-left: -2px;
+    background-color: #2127268a;
+    box-shadow: fill #000000bb 1px 0px 1px 1px;
+    border-radius: 2px;
+    border: 1px solid black;
+    min-width: 14px;
+    min-height: 14px;
+    z-index: 16;
+    vertical-align: top;
+    horizontal-align: left;
+    max-width: 70px;
+    max-height: 15px;
+    white-space: nowrap;
+}
+#ItemCostContainer{
+    horizontal-align: right;
+    vertical-align: bottom;
+    background-image: url( "s2r://panorama/images/hud/reborn/manaamount_bg_png.vtex");
+    background-size: 100% 100%;
+    background-position: 18px 8px;
+    background-repeat: no-repeat;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    width: 100%;
+}

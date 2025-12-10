@@ -1,0 +1,184 @@
+local target = event.unit
+local player = PlayerResource:GetPlayer( caster:GetPlayerID() )
+local particleName = "particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf" 
+local particle = ParticleManager:CreateParticleForPlayer( particleName, PATTACH_ABSORIGIN, target, player )
+ParticleManager:SetParticleControl( particle, 0, target:GetAbsOrigin() )
+ParticleManager:SetParticleControl( particle, 1, target:GetAbsOrigin() )
+
+
+接下来的工作  先做特效
+
+
+Position along ring 沿环位置   特效转圈起始位置
+yaw  数值控制
+选项   Movement place on ground 地面运动位置  子选项  offset  高度
+Emit continuously  emission rate  调节速度
+
+rubick_steal_cent_double_edge   centaur_double_edge  普攻
+rubick_steal_axeculling  斧王斩杀完整
+rubick_steal_axeculling_anim  斧王斩杀后段
+rubick_steal_bmprimalroar  兽王吼
+rubick_steal_bramble_maze 跳冲扔
+rubick_steal_amblink   敌法旋转跳
+rubick_steal_bb_nasal_goo    bristleback_viscous_nasal_goo 推波
+rubick_steal_cursed_crown 超人冲
+rubick_steal_esfissure 拐杖立地
+rubick_steal_hdwnk_sharpshooter_release 开枪
+rubick_steal_jomni 乱抓
+rubick_steal_lfinger 死亡一指
+rubick_steal_limpale 踢腿
+rubick_steal_mk_strike 金箍棒
+rubick_steal_naga_song_cast 棒子指天
+rubick_steal_phnx_supernova_end  跳起来拐杖立地
+rubick_steal_qopsonic_wave后侧步
+
+CreateParticleForPlayer  只显示给特定玩家看    
+PATTACH_OVERHEAD_FOLLOW   这个也有同样效果
+
+
+
+攻击特效选择
+particles/econ/items/void_spirit/void_spirit_immortal_2021/void_spirit_10th_aniversary_attack_02_blur.vpcf
+
+
+particles/units/heroes/hero_phantom_assassin_persona/pa_persona_attack_blur_crit.vpcf  特别漂亮
+
+particles/econ/items/sven/sven_warcry_ti5/sven_warcry_shield_bash_blur_2.vpcf
+
+
+particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_start.vpcf  斧王转
+particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf
+particles/econ/items/axe/axe_weapon_practos/axe_attack_blur_counterhelix_practos.vpcf
+particles/econ/items/axe/axe_ti9_immortal/axe_ti9_call_ring.vpcf
+
+particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_blade_fury.vpcf
+particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_blade_fury_dragon.vpcf   剑圣刀
+particles/econ/items/axe/ti9_jungle_axe/ti9_axe_attack_smash_blur_left.vpcf  剑圣普攻
+particles/econ/items/juggernaut/jugg_ti8_sword/juggernaut_ti8_sword_attack_a_golden.vpcf
+particles/econ/items/juggernaut/jugg_ti8_sword/juggernaut_blade_fury_abyssal_start_golden.vpcf
+
+particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_attack_blink_blur.vpcf   幻影刺客普攻
+particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_attack_crit_blur.vpcf
+
+particles/econ/items/primal_beast/primal_beast_2022_prestige/primal_beast_2022_prestige_attack_fist_blur_right_to_left.vpcf 兽
+
+particles/econ/items/razor/razor_arcana/razor_arcana_sword_attack_swoosh_right.vpcf  电魂
+particles/econ/items/razor/razor_arcana/razor_arcana_sword_attack_swoosh_left_v2.vpcf
+particles/econ/items/razor/razor_arcana/razor_arcana_sword_attack_swoosh_left.vpcf
+
+particles/econ/items/void_spirit/void_spirit_immortal_2021/void_spirit_10th_anniversary_attack_alt_blur.vpcf 紫猫
+particles/econ/items/void_spirit/void_spirit_immortal_2021/void_spirit_10th_anniversary_attack_01_blur.vpcf
+particles/econ/items/void_spirit/void_spirit_immortal_2021/void_spirit_immortal_2021_attack_01_blur.vpcf
+particles/econ/items/void_spirit/void_spirit_immortal_2021/void_spirit_immortal_2021_attack_alt_blur.vpcf
+
+particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_weapon_blur_attack2_reverse_style2.vpcf 骷髅王
+particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_weapon_blur_attack2_reverse.vpcf
+
+particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_weapon_blur_attack_style2.vpcf
+
+particles/neutral_fx/roshan_valentines_attack_left.vpcf 肉山
+
+particles/units/heroes/hero_dark_seer/dark_seer_punch_glove_attack.vpcf  黑贤
+
+particles/units/heroes/hero_dawnbreaker/dawnbreaker_fastattack_sweep_downward.vpcf 大锤
+
+particles/units/heroes/hero_earth_spirit/es_attack_blur3.vpcf 土猫
+
+particles/units/heroes/hero_monkey_king/monkey_king_attack_01_near_blur_cud.vpcf 大圣
+
+拉比克模型找动作
+models/heroes/rubick/rubick.vmdl
+
+DOTA_ATTACK
+herlequin
+
+DOTA_RUN
+scurry    四脚着地跑
+heavy_steps 快乐跑步
+DOTA_INTRO
+phoenix_supernove 原地跳起来转圈
+
+DOTA_OVERRIDE_ABILITY_1
+spin       剑圣转
+
+DOTA_OVERRIDE_ABILITY_4
+omnislash     无敌斩
+sharpshooter   狙击
+ball_lightning 电光毒龙转
+
+DOTA_CAST_ABILITY_5
+rubick_steal_sassassinate_anim  snipe 火枪大,要摆造型的狙击
+impale     踢
+remnant 金鸡独立
+finger 死亡一指
+freezing_field  冰女大
+roar     兽王吼    
+dawnbreaker_fire_wreath    锤子妈转
+fissure     棍子插地
+magnataur_shockwave  冲击波
+magnataur_skewer 飞
+monkey_king_boundless_strike 金箍棒
+gyroshell 原地跳起来转圈
+onslaught  拐杖震地
+dismember  肢解 屠夫大, 自带血特效
+
+centaur_mount
+bedlam 抱起来转圈
+terrorize  转圈起飞然后俯冲
+morphling_waveform 水人冲
+rubick_steal_bramble_maze    bramble_maze  跳冲一棍子
+
+
+DOTA_CHANNEL_ABILITY_5
+rubick_steal_wrpowershot_channel      powershot  射箭
+
+
+做动作需要的API
+caster.StartGestureWithPlaybackRate(1596,0.5)   设置动作,播放速率   后面参数越小,动作越慢
+        print(caster.GetAbsOrigin()+(caster.GetForwardVector()*200))   朝向和距离
+
+拉比克改技能
+            print(this.GetAbility().GetStolenActivityModifier())
+            this.GetCaster().AddActivityModifier('pangolier_gyroshell')
+            this.GetCaster().StartGesture(GameActivity.DOTA_CAST_ABILITY_4)
+格挡   0施法时间   持续 0.2秒  格挡期间受到攻击触发格挡特效   获得格挡时间+0.5秒的无敌BUFF
+
+
+unit:SetRangedProjectileName   改变攻击弹道
+
+
+
+适合线性特效
+particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf   龙骑火
+particles/units/heroes/hero_drow/drow_silence_wave.vpcf    小黑沉默
+particles/units/heroes/hero_drow/drow_multishot_proj_linear_proj.vpcf   小黑射箭
+particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj.vpcf   墨客墨涌
+particles/base_attacks/ranged_tower_bad_linear.vpcf  防御塔  夜魇
+particles/base_attacks/ranged_tower_good_linear.vpcf  防御塔  天辉
+particles/units/heroes/hero_invoker/invoker_tornado.vpcf   卡尔龙卷风
+particles/units/heroes/hero_invoker/invoker_deafening_blast.vpcf  卡尔B刀
+particles/units/heroes/hero_jakiro/jakiro_dual_breath_ice.vpcf  双头龙 火
+particles/units/heroes/hero_jakiro/jakiro_dual_breath_fire.vpcf 双头龙 冰
+particles/units/heroes/hero_kunkka/kunkka_ghost_ship.vpcf 昆卡 船
+particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf 火女 龙破斩
+particles/units/heroes/hero_lion/lion_spell_impale.vpcf 莱恩 地刺
+particles/units/heroes/hero_puck/puck_illusory_orb.vpcf 帕克
+particles/units/heroes/hero_queenofpain/queen_sonic_wave.vpcf 女王
+particles/units/heroes/hero_tidehunter/tidehunter_gush_upgrade.vpcf 潮汐
+particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_ranged.vpcf 巨魔
+particles/units/heroes/hero_vengeful/vengeful_wave_of_terror.vpcf 死灵飞龙
+particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf  剧毒术士
+particles/units/heroes/hero_windrunner/windrunner_spell_powershot_rubick.vpcf 风行者
+rubick  动作
+rubick_steal_arm_cast_gyroshell_start   地雷滚滚
+rubick_steal_axeculling  斧王斩杀?
+rubick_steal_bbrain_sap
+rubick_steal_bedlam
+rubick_steal_bmwildaxesa  跪拜?
+rubick_steal_bramble_maze  空中一棍
+rubick_steal_bs_rupture  跳跃
+rubick_steal_celestial_hammer_run  跑步
+rubick_steal_cent_double_edge 从右往左砍
+rubick_steal_clinkz_burning_army
+rubick_steal_zeus_lightning_bolt
+rubick_steal_cmfreezingfield

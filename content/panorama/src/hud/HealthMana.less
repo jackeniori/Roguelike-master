@@ -1,0 +1,109 @@
+
+//魔法生命条
+#ManaProgress_Left,#HealthProgress_Left{
+    height: 100%;
+}
+#HealthManaContainer{
+    width: 95%;
+    height: fit-children;
+    visibility: visible;
+    vertical-align: bottom ;
+    horizontal-align: center;
+    flow-children: down;
+    margin-bottom: 5px;
+}
+#HealthLabel,#ManaLabel{
+    text-shadow: 0px 1px 4px 3.0 #000000;
+}
+#ManaLabel,#HealthLabel{
+    text-align: center;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 18px;
+    width: 332px;
+    color: white;
+    horizontal-align: center;
+    margin-top: 2px;
+    overflow: noclip;
+    z-index: 3;
+}
+#HealthProgress,#ManaProgress{
+    border-radius: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: none;
+    border: 0px;
+}
+//渐变颜色
+.Reborn #HealthProgress .ProgressBarLeft{
+    border-radius: 3px;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #425d25  ), color-stop( 0.2, #5BA539 ), color-stop( .5, #4D9030), to( #425d25) );
+}
+#HealthProgress .ProgressBarRight{
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #17200d  ), color-stop( 0.2, #222e13 ), color-stop( .5, #1e2911), to( #17200d) );
+}
+.Reborn #ManaProgress .ProgressBarLeft{
+    border-radius: 3px;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #2b4287 ), color-stop( 0.2, #4165ce ), color-stop( .5, #4a73ea), to( #2b4287 ) );
+}
+#ManaProgress .ProgressBarLeft{
+    background-color: #0000FF;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #6A90BA  ), color-stop( 0.4, #144B91 ), to( #2E5187 ) );
+    border-radius: 5px;
+    brightness: 1;
+    border-top-width: 0px;
+}
+#ManaContainer,#HealthContainer{
+    width: 100%;
+    height: 26px;
+    margin-bottom: 2px;
+}
+.Reborn #ManaContainer{
+    visibility: visible;
+}
+//渐变绿变蓝
+#ManaBurner{
+    hue-rotation: 50deg;
+    opacity: .4;
+}
+#ManaBurner,#HealthBurner{
+    width: 100%;
+    height: 100%;
+}
+.Reborn #ManaProgress .ProgressBarRight{
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #101932 ), color-stop( 0.2, #172447 ), color-stop( .5, #162244), to( #101932 ) );
+}
+//百分比进度条
+ProgressBar{
+    width: 320px;
+    height: 22px;
+    border-radius: 8px;
+    background-color: #000000ff;
+    overflow: noclip;
+}
+//场景容器   渐变条
+.DotaSceneContainer{
+    width: 100%;
+    height: 100%;
+    overflow: noclip;
+}
+//魔法恢复
+.Reborn #HealthRegenLabel,.Reborn #ManaRegenLabel{
+    font-size: 14px;
+    text-shadow: 0px 2px 4px #000000;
+    font-weight: bold;
+    margin-top: 1px;
+    margin-right: 4px;
+    text-align: right;
+    vertical-align: center;
+    padding-right: 2px;
+    horizontal-align: right;
+    z-index: 4;
+}
+//魔法恢复生命恢复
+#ManaRegenLabel{
+    color: #83C2FE;
+}
+#HealthRegenLabel{
+    color: #3ED038;
+}

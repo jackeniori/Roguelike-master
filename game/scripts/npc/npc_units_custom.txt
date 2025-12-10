@@ -1,0 +1,43 @@
+#base "minions.txt"
+
+// Units File
+"DOTAUnits"
+{
+	"Version"	"1"
+	//vpk:E:\Steam\steamapps\common\dota 2 beta\game\dota\pak01.vpk:models\items\faceless_void\bracers_of_aeons\bracers_of_aeons_hex.vmdl_c
+	//materials/particle/hexagon/hexagon_edge_01.vtex
+	//=================================================================================	
+	// Creature: Gnoll Assassin
+	//=================================================================================
+	"npc_dota_gezi"	
+	{
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/creeps/neutral_creeps/n_creep_gnoll/n_creep_gnoll_frost.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Ranged"
+		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+		"Level"						"1"
+		"ModelScale" 				".9"
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					""			// Ability 1
+		"Ability2"					""			// Ability 2
+		"Ability3"					""			// Ability 3
+		"Ability4"					""			// Ability 4
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"1"			// Physical protection.
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"30"		// Damage range min.
+		"AttackDamageMax"			"36"		// Damage range max.
+		"AttackRate"				"1.6"		// Speed of attack.
+		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"500"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
+		"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+	}
+}

@@ -1,0 +1,182 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 36
+	m_hSnapshot = resource:"particles/models/items/alchemist/twin_blades_aurelian/twin_blades_aurelian_l.vsnap"
+	m_nSnapshotControlPoint = 7
+	m_flConstantRadius = 18.0
+	m_flConstantLifespan = 0.25
+	m_ConstantColor = [ 255, 255, 255, 128 ]
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_weapon_l"
+					m_entityName = "parent"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/items/alchemist/twin_blades_aurelian/twin_blades_aurelian.vmdl"
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 4
+			m_vecCP1Pos = [ 0.0, 0.0, 0.0 ]
+			m_bSetOnce = true
+			m_transformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_nCP = 4
+			m_bUseWorldLocation = true
+		},
+		{
+			_class = "C_OP_SetControlPointFromObjectScale"
+			m_nCPOutput = 3
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 32.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFromCPSnapshot"
+			m_nControlPointNumber = 7
+			m_nAttributeToRead = 0
+			m_nLocalSpaceCP = 4
+			m_bRandom = true
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 40.0
+				m_flRandomMax = 55.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.75
+				m_flRandomMax = 1.25
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_MovementRigidAttachToCP"
+			m_nScaleControlPoint = 3
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_RemapControlPointDirectionToVector"
+			m_nFieldOutput = 21
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_nField = 4
+			m_RateMin = -1.0
+			m_RateMax = 1.0
+			m_flEndTime_min = 100000002004087717888.0
+			m_flEndTime_max = 100000002004087717888.0
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.0
+			m_flBias = 0.75
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.75
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			VisibilityInputs = 
+			{
+				m_flCameraBias = -16.0
+			}
+			m_bRefract = true
+			m_flRefractAmount = 0.02
+			m_nRefractBlurRadius = 3
+			m_nRefractBlurType = "BLURFILTER_BOX"
+			m_bGammaCorrectVertexColors = false
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/warp_noise10.vtex"
+				},
+			]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_ambient_aurelian_glow_l.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_ambient_aurelian_gleam_l.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_ambient_aurelian_edge_a_l.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_ambient_aurelian_edge_b_l.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_ambient_aurelian_ray_l.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_ambient_aurelian_steam.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_ambient_aurelian_light_l.vpcf"
+		},
+	]
+}

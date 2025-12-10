@@ -1,0 +1,388 @@
+#base "abilities.txt"
+"DOTAAbilities"
+{
+	"normal_block"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+        "ScriptFile"					"abilities/block/normal_block.lua"
+		"AbilityTextureName"			"sven_gods_strength"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"				"1"
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.3"
+		"AbilityDuration"				"0.2"
+	     
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"10"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cooldown"		    "0.3"		
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"block_duration"		    "0.2"		
+			}
+
+		}
+	}
+	"aoe_test"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+        "ScriptFile"					"abilities/test/aoe_test.lua"
+		"AbilityTextureName"			"kunkka_x_marks_the_spot"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"FightRecapLevel"				"1"
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.3"
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"10"
+         
+	}
+	"test_xianxing"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+        "ScriptFile"					"abilities/test/test_xianxing.lua"
+		"AbilityTextureName"			"lion_mana_drain"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"FightRecapLevel"				"1"
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.3"
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"10"
+         
+	}
+	"normal_dodge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+        "ScriptFile"					"abilities/dodge/normal_dodge.lua"
+		"AbilityTextureName"			"queenofpain_blink"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"FightRecapLevel"				"1"
+		
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.3"
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"10"
+         
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cooldown"		    "0.3"		
+			}
+		}
+	}
+    "dagger_1"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dagger/dagger_1.lua"
+        "AbilityTextureName"            "meepo_earthbind"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+        "AbilitySound"                  "Hero_Meepo.Earthbind.Cast"
+
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1250"
+        "AbilityCastPoint"              "0.0"
+        "CastTime"                      "0.0"
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "10"
+
+    }
+    "dagger_2"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dagger/dagger_2.lua"
+        "AbilityTextureName"            "pangolier_swashbuckle"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"HasScepterUpgrade"				"0"
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1250"
+        "AbilityCastPoint"              "0.0"
+		"CastTime"                      "0.2"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "10"
+         
+
+	}
+    "dagger_3"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dagger/dagger_3.lua"
+        "AbilityTextureName"            "ursa_overpower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+        "AbilitySound"                  "Hero_Meepo.Earthbind.Cast"
+
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1250"
+        "AbilityCastPoint"              "0.0"
+		"CastTime"                      "0.0"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "10"
+    }
+ 
+    "dagger_4"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dagger/dagger_4.lua"
+        "AbilityTextureName"            "naga_siren_rip_tide"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+        "AbilitySound"                  "Hero_Meepo.Earthbind.Cast"
+
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1250"
+        "AbilityCastPoint"              "1"
+		"CastTime"                      "2"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "10"
+    }
+    "dagger_5"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dagger/dagger_5.lua"
+        "AbilityTextureName"            "keeper_of_the_light_illuminate"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+        "AbilitySound"                  "Hero_Meepo.Earthbind.Cast"
+
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1250"
+        "AbilityCastPoint"              "2"
+		"CastTime"                      "2"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "10"
+    }
+    "dagger_6"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dagger/dagger_6.lua"
+        "AbilityTextureName"            "keeper_of_the_light_blinding_light"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+        "AbilitySound"                  "Hero_Meepo.Earthbind.Cast"
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1250"
+        "AbilityCastPoint"              "0.0"
+		"CastTime"                      "2"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "10"
+    }
+
+    "dagger_7"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dagger/dagger_7.lua"
+        "AbilityTextureName"            "magnataur_shockwave"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+        "AbilitySound"                  "Hero_Meepo.Earthbind.Cast"
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1250"
+        "AbilityCastPoint"              "0.0"
+		"CastTime"                      "2"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "10"
+    }
+    "dagger_8"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dagger/dagger_8.lua"
+        "AbilityTextureName"            "medusa_split_shot"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+        "AbilitySound"                  "Hero_Meepo.Earthbind.Cast"
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1250"
+        "AbilityCastPoint"              "0.0"
+		"CastTime"                      "2"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "10"
+    }
+    "dagger_9"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dagger/dagger_9.lua"
+        "AbilityTextureName"            "mirana_invis"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+        "AbilitySound"                  "Hero_Meepo.Earthbind.Cast"
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1250"
+        "AbilityCastPoint"              "0.0"
+		"CastTime"                      "2"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "10"
+    }
+   "normal_test"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/test/test.lua"
+        "AbilityTextureName"            "ursa_overpower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1250"
+        "AbilityCastPoint"              "0.0"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "10"
+    }
+	
+}  

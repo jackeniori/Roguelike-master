@@ -1,0 +1,46 @@
+
+
+必须加在   precache 里面   precache里加一下
+
+Renderer  渲染器
+Render sprites   渲染精灵
+Render rope  渲染绳子
+
+特效教程
+
+hexagon  六边形
+
+Position along ring    位置,朝向,范围
+
+    even distribution count    均匀分布计数   特效长度  
+    Initial    Radius          初始半径   特效大小
+    Thickness    厚度 
+
+Remap particle count to scalar   将粒子计数重新映射为标量
+Input Minimum   初始位置
+Input Maximum   结束位置
+Output Minimum   初始透明度
+Output Maximum   结束透明度
+
+Set child control points objects to model particles    设置子控制点对象来建模粒子
+Attribute.C_OP_SetControlPointsToModelParticles.m_nFirstControlPoint 设置为6???
+
+
+
+带模型的特效
+particles/creatures/aghanim/aghanim_preimage.vpcf
+particles/econ/events/compendium_2024/compendium_2024_teleport_image_color_rewardline.vpcf
+particles/econ/events/compendium_2024/compendium_2024_teleport_image_glow_rewardline.vpcf
+particles/econ/events/compendium_2024/compendium_2024_teleport_image_rewardline.vpcf
+
+紫色半月
+materials/particle/swoop_07.vtex
+
+
+留着做图标特效
+particles/customgames/capturepoints/cp_wind.vpcf
+
+
+地图编辑工具  右键模型
+selected meshes   ctrl+t  转化为实体
+selected objects  ==>>  create model from selection

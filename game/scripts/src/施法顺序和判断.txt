@@ -1,0 +1,84 @@
+
+预输入   技能分为能打断和不能打断
+
+释放技能
+起手式   施法前摇  施法前摇结束前,按格挡闪避不会造成伤害
+施法后摇  后摇结束前无法继续释放攻击技能
+
+
+
+
+预先输入  
+释放技能时候   
+可打断技能   
+按移动  闪避  格挡  能取消
+按技能  后摇计时器结束，立马释放技能
+
+
+施法后摇  
+后摇期间无法打断   
+可以预输入
+
+ACT_DOTA_CAST_OVERRIDE_1
+
+
+ACT_DOTA_CAST_ABILITY_1
+    spin  剑圣转
+ACT_DOTA_CAST_ABILITY_2
+
+ACT_DOTA_CAST_ABILITY_3
+
+ACT_DOTA_CAST_ABILITY_4
+    sharpshooter     狙击发射
+
+ACT_DOTA_CAST_ABILITY_5
+    ancient_apparition_ice_blast    推波
+    am_blink    敌法跳
+    mars_arena_of_blood   敌法跳
+    mana_void   后仰慢慢摆正
+    culling_blade   斧王斩杀
+    centaur_hoof_stomp 斧王斩杀
+    arc_warden_flux   推波,动作很短  1.23333
+    arc_warden_tempest_double    跳起来
+    bloodseeker_rupture    跳起来
+    brain_sap   死亡一指???
+    finger      死亡一指???
+    stolen_firefly   骑着拐杖魔女飞
+    roar   兽王吼
+    bloodseeker_blood_bath   一指甩技能
+    centaur_double_edge   甩棍  普攻
+    chaos_knight_chaos_bolt   抓脚
+    chen_penitence   推波
+    chen_hand_of_god   立拐杖
+    fissure    立拐杖
+    crystal_nova   扔
+    freezing_field 飞起来
+    rattletrap_hookshot   手仗单手向前推
+    wall  开门?
+    bramble_maze   跳过去一榔头
+    cursed_crown   超人飞
+    bedlam        抱着转圈扔
+    terrorize     螺旋飞天,向下俯冲
+    impale        踢腿
+    monkey_king_boundless_strike   金箍棒  跳劈
+
+
+
+ACT_DOTA_OVERRIDE_ABILITY_4
+    omnislash    双手挥动砍
+
+    
+ACT_DOTA_CHANNEL_ABILITY_5
+    fiends_grip   痛苦之源大招   单手一直晃
+    freezing_field    冰女大??
+    mana_drain    未知
+
+ACT_DOTA_CHANNEL_ABILITY_6
+    sharpshooter    狙击瞄准
+
+
+
+
+
+
+

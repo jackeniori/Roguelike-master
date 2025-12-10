@@ -1,0 +1,24 @@
+<root>
+    <scripts>
+        <include src="./script.tsx" />
+    </scripts>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+        <include src="./styles.less" />
+        <include src="./Portrait.less" />
+        <include src="./HealthMana.less" />
+        <include src="./StatsRegion.less" />
+        <include src="./Str_Agi_Int.less" />
+        <include src="./Abilities.less" />
+        <include src="./Inventory.less" />
+    </styles>
+    <Panel class="root" hittest="false" >
+        <Panel id="card" class="root"  hittest="false" />
+        <Panel id="bag" class="root"  hittest="false" />
+        <Panel id="main" class="root"  hittest="false" />
+        <Panel id="unit" class="root"  hittest="false" />    
+        <Panel id="tooltip" class="root"  hittest="false" />    
+        <Panel id="drag" class="root"  hittest="false" />    
+        <Panel id="puzzle" class="root"  hittest="false" />   
+    <Panel/>
+</root>

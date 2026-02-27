@@ -60,6 +60,7 @@ interface Cell {
 }
     // 方块生成逻辑
     const [currentTetromino, setCurrentTetromino] = useState<any>(null);
+    //行列
     const [position, setPosition] = useState({ row: 10, col: 8 });
     // const spawnNewTetromino = () => {
     //     const type = Object.keys(TetrominoShapes)[Math.floor(Math.random() * Object.keys(TetrominoShapes).length)];
@@ -208,8 +209,8 @@ function ArrangeToSlot({name,row,col}:{name:string,row:number,col:number}){
         const itemRef = useRef<Panel>(null);
         let name = data.name
         let zhuan:Cell | undefined = SlotToArrange({slot,name})
-        
         let Color:string = zhuan? zhuan.Color : '#ffffff'
+        //拖拽
         useRegisterForUnhandledEvent('DragStart',(panelId:PanelBase, draggedPanel ) => {
             let eself = itemRef.current;
             if(eself && eself == panelId){

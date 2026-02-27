@@ -3,7 +3,7 @@ import { render, useGameEvent, useNetTableKey, useRegisterForUnhandledEvent } fr
 import classNames from 'classnames';
 
 // 天灵根示例（金属性为主） const tianLinggenGrid = generateDantian("Tian", ["metal"]);
-import {GenerateDantian} from './generate_spiritual_root'
+//import {GenerateDantian} from './generate_spiritual_root'
 const elements = ['metal', 'wood', 'water', 'fire', 'earth'] as const;
 type elements = typeof elements[number];
     const TetrominoShapes: Record<string, number[][]> = {
@@ -65,71 +65,70 @@ const elementSymbols = {
     'earth': { background: 'linear-gradient(135deg, #795548 0%, #5D4037 100%)', color: '#795548' }
 };
 
-// 内功词条
-const internalSkills = {
-    'metal': ['锐金内息', '金脉贯通', '金属共鸣'],
-    'wood': ['生生不息', '自然滋养', '根深蒂固'],
-    'water': ['流水柔劲', '水韵流转', '深潭静心'],
-    'fire': ['烈焰心法', '燃烧之魂', '火源核心'],
-    'earth': ['大地守护', '磐石根基', '地脉连接']
-};
-
-// 外功词条
-const externalSkills = {
-    'metal': ['金戈破甲', '锐利锋芒', '金属震荡'],
-    'wood': ['毒藤缠绕', '森林庇护', '生长之力'],
-    'water': ['寒冰禁锢', '水流冲击', '水形幻影'],
-    'fire': ['爆裂火花', '灼热之触', '火焰风暴'],
-    'earth': ['地刺反击', '山崩地裂', '沙尘护体']
-};
-
-// 特殊效果
-const specialEffects = {
-    'all_elements': '五行俱全',
-    'all_generating': '全部相生',
-    'all_restraining': '全部相克'
-};
 export function ThePubicRegionPanel(){
- 
-interface Cell {
-  index: number;
-  opacity:string;
-  Pstate?:number[];
-  elements:elements
-}
-    // 创建5x5的Dantian网格（使用0-based索引）
-    const [dantianGrid, setDantianGrid] = useState<elements[][]>(GenerateDantian("Tian", ["metal"]));
+    interface Cell {
+    index: number;
+    opacity:string;
+    Pstate?:number[];
+    elements:elements
+    }
+    const [WuXing, setWuXing] = useState(CustomNetTables.GetTableValue("wu_xing", "player_" + Game.GetLocalPlayerID()) || null  ) as any
+    // 监听背包数据变化
+    useEffect(() => {
+        const listener = CustomNetTables.SubscribeNetTableListener("wu_xing", (_, eventKey, eventValue) => {
+            if ("player_" + Game.GetLocalPlayerID() === eventKey) {
+                if (eventValue) {
+                    $.Msg("Dantian grid updated:", eventValue);
+                    setWuXing(eventValue);
+                }
+            }
+        });
+        return () => {
+            CustomNetTables.UnsubscribeNetTableListener(listener);
+        };
+    }, []);
+
     const position: {row: number;col: number;} = { row: 9, col: 9 };
 
     // 使用 useEffect 在 dantianGrid 变化时重新计算 PuzzleData
+    
     const [puzzleData, setPuzzleData] = useState<Cell[][]>([]);
     useEffect(() => {
-        const newPuzzleData: Cell[][] = [];
-        
-        for (let i = 0; i < position.row; i++) {
-            newPuzzleData[i] = [];
-            for (let j = 0; j < position.col; j++) {
-                const isCenterRegion = i >= 2 && i <= 6 && j >= 2 && j <= 6;
-                const isyincang = (i < 2 || i > 6) && (j < 2 || j > 6);
-                const opacity = isCenterRegion ? '1' : isyincang ? '0' : '0.6';
-                
-                const dantianRow = ((i - 2) % 5 + 5) % 5;
-                const dantianCol = ((j - 2) % 5 + 5) % 5;
-                
-                newPuzzleData[i][j] = {
-                    index: i * position.col + j + 1,
-                    opacity: opacity,
-                    elements: dantianGrid[dantianRow][dantianCol]
-                };
-            }
+        $.Msg("无形",WuXing.length,"无形",WuXing);
+        if (WuXing) {
+            $.Msg("WuXing && WuXing.length === 5)无形:");
+            const newPuzzleData = initializePuzzleData(position.row, position.col, WuXing);
+            setPuzzleData(newPuzzleData);
         }
-        setPuzzleData(newPuzzleData);
-    }, [dantianGrid, position.row, position.col]);
-    type GenusType = "Tian" | "Di" | "Shuang" | "San" | "Si" | "Wu";
-    const handleGenerate = (genusType: GenusType, mainElements: elements[]) => {
-        const newDantian = GenerateDantian(genusType, mainElements);
-        setDantianGrid(newDantian);
-    };
+    }, [WuXing, position.row, position.col]);
+
+    // 提取初始化邏輯到獨立函數
+function initializePuzzleData(rows: number, cols: number, wuxingData: Array<Array<elements>>): Cell[][] {
+    const newPuzzleData: Cell[][] = [];
+    $.Msg("Dantian grid 无形:", wuxingData);
+    for (let i = 0; i < rows; i++) {
+        newPuzzleData[i] = [];
+        for (let j = 0; j < cols; j++) {
+            const isCenterRegion = i >= 2 && i <= 6 && j >= 2 && j <= 6;
+            const isyincang = (i < 2 || i > 6) && (j < 2 || j > 6);
+            const opacity = isCenterRegion ? '1' : isyincang ? '0' : '0.6';
+            
+            // 安全訪問 WuXing 數據
+            let element: elements;
+            const dantianRow = ((i - 2) % 5 + 5) % 5;
+            const dantianCol = ((j - 2) % 5 + 5) % 5;
+            element = wuxingData[dantianRow][dantianCol];
+            newPuzzleData[i][j] = {
+                index: i * cols + j + 1,
+                opacity: opacity,
+                elements: element 
+            };
+        }
+    }
+    $.Msg("Initialized PuzzleData:", newPuzzleData);
+    return newPuzzleData;
+}
+    //分界线
     const PuzzleContainer = () => (
         <Panel style={{
             flowChildren: "down",  // 垂直排列子元素
@@ -206,10 +205,13 @@ interface Cell {
 
     function Puzzle({slot}:{slot:number}){  //
         const itemRef = useRef<Panel>(null);
+        
         const zhuan = puzzleData[Math.floor((slot - 1) / position.col)]?.[(slot - 1) % position.col];
+        
         if (!zhuan) return null; // 安全处理
         let Color:string = elementSymbols[zhuan.elements].color   
         let opacity:string = zhuan.opacity
+        $.Msg("Rendering Puzzle Slot:", slot,zhuan,Color);
         let style:Partial<VCSSStyleDeclaration> = {height:'60px',width:'60px',marginTop:'1px',marginBottom:'1px',marginLeft:'1px',marginRight:'1px',opacity:opacity,
                         borderTop: "5px solid #FF0000",
                         borderRight: "5px solid #00FF00",
@@ -268,7 +270,7 @@ interface Cell {
     } 
 return (<>
             <Label 
-                onactivate={() => handleGenerate("Di", ["metal"])}
+                onactivate={() => {$.Msg("重新生成")}}
                 style={{
                     horizontalAlign: 'right',
                     verticalAlign: 'center',

@@ -9,6 +9,7 @@ export function MainPanel() {
                 setTest([['xianshi','显示']])
             }else if(data.value=='xianshi'){
                 setTest([
+                        ['jueseshuxing' ,'角色属性'],
                         ['diren' ,'敌人'],
                         ['duiyou' ,'队友'],
                         ['shengji' ,'升级'],
@@ -17,7 +18,10 @@ export function MainPanel() {
                         ['qidong' ,'启动'],
                         ['guanbi' ,'关闭'],
                         ['beibao' ,'背包'],
+                        ['danweimianban' ,'单位面板'],
                         ['yincang','隐藏']   
+
+                        
                 ])
             }
         });

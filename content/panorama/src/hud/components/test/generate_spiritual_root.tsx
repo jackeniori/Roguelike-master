@@ -142,19 +142,3 @@ function shuffleArray<T>(array: T[]): T[] {
     }
     return newArray;
 }
-// const tianLinggenGrid = GenerateDantian("Tian", ["metal"]);
-// $.Msg(tianLinggenGrid)
-// const tianLinggenGrid = generateDantian("Tian", ["metal"]);
-// console.log("天灵根网格:", tianLinggenGrid);
-
-// // 双灵根示例（金和木为主）
-// const shuangLinggenGrid = generateDantian("Shuang", ["metal", "wood"]);
-// console.log("双灵根网格:", shuangLinggenGrid);
-
-// // 四灵根示例（金、木、水、火）
-// const siLinggenGrid = generateDantian("Si", ["metal", "wood", "water", "fire"]);
-// console.log("四灵根网格:", siLinggenGrid);
-
-// // 五灵根示例（所有属性平均）
-// const wuLinggenGrid = generateDantian("Wu", ["metal", "wood", "water", "fire", 'earth']);
-// console.log("五灵根网格:", wuLinggenGrid);

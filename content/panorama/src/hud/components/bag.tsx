@@ -67,8 +67,9 @@ export function BagPanel() {
     //背包个
     function BagItem({slot}:{slot:number}){  //
         const itemId = BagCNT[slot]
-        let zifuchuanjieqv
+        let zifuchuanjieqv;
         const itemRef = useRef<Panel>(null);
+        //拖拽
         useRegisterForUnhandledEvent('DragStart',(panelId, draggedPanel) => {
             let eself = itemRef.current as any;
             if(eself && eself == panelId  && itemId != -1){

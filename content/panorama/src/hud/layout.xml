@@ -20,5 +20,7 @@
         <Panel id="tooltip" class="root"  hittest="false" />    
         <Panel id="drag" class="root"  hittest="false" />    
         <Panel id="puzzle" class="root"  hittest="false" />   
+        <Panel id="character_attributes" class="root"  hittest="false" />   
+        
     <Panel/>
 </root>

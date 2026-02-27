@@ -122,7 +122,92 @@ const csv_to_localization =
 const localization_2_csv = () => {
     return dotax.localsToCSV(`${paths.game_resource}/addon_*.txt`, `${paths.game_resource}/addon.csv`);
 };
+/**
+ * @description 根據 shared/net_tables.d.ts 中的類型定義，自動生成 game/scripts/custom_net_tables.txt 聲明文件
+ * @description Automatically generate game/scripts/custom_net_tables.txt from type definitions in shared/net_tables.d.ts
+ */
+const generate_custom_net_tables =
+    (watch: boolean = false) =>
+    (done: Function) => {
+        const typeDefFile = `shared/net_tables.d.ts`;
+        const outputFile = `game/scripts/custom_net_tables.txt`;
 
+        const generateFile = (callback: Function) => {
+            const fs = require('fs');
+            const path = require('path');
+            
+            try {
+                const typeDefPath = path.resolve(typeDefFile);
+                let typeDefContent = fs.readFileSync(typeDefPath, 'utf-8');
+
+                // 1. 移除註釋，避免干擾匹配
+                typeDefContent = typeDefContent.replace(/\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '');
+                
+                // 2. 匹配所有頂層屬性定義
+                const tableRegex = /^\s*(\w+)\s*:\s*\{/gm;
+                const tables: string[] = [];
+                let match;
+                
+                tableRegex.lastIndex = 0;
+                
+                while ((match = tableRegex.exec(typeDefContent)) !== null) {
+                    const tableName = match[1];
+                    // 過濾掉明顯不是表名的關鍵字
+                    if (!['interface', 'declare', 'type', 'export', 'import'].includes(tableName.toLowerCase())) {
+                        tables.push(tableName);
+                    }
+                }
+                
+                // 去重
+                const uniqueTables = [...new Set(tables)];
+
+                if (uniqueTables.length === 0) {
+                    console.warn(`⚠️  [generate_custom_net_tables] 在 ${typeDefFile} 中未找到任何網絡表定義。`);
+                }
+
+               // 3. 生成 KV3 格式內容（根據您提供的示例格式）
+                // 首先將表名轉換為小寫並用下劃線分隔
+                const kvTableNames = uniqueTables.map(tableName => 
+                    tableName
+                        .replace(/Table$/, '')
+                        .replace(/([a-z])([A-Z])/g, '$1_$2')
+                        .toLowerCase()
+                );
+
+                // 構建 KV3 格式內容
+                const kvContent = `<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+                {
+                custom_net_tables = 
+                [
+                ${kvTableNames.map(name => `        "${name}"`).join(',\n')}
+                    ]
+                }`;
+
+                // 4. 寫入文件
+                const outputPath = path.resolve(outputFile);
+                fs.writeFileSync(outputPath, kvContent, 'utf-8');
+                console.log(`✅ [generate_custom_net_tables] 已生成 ${outputPath}，包含表: ${kvTableNames.join(', ')}`);
+                callback();
+            } catch (error) {
+                console.error(`❌ [generate_custom_net_tables] 生成失敗:`, error);
+                callback(error);
+            }
+        };
+
+        if (watch) {
+            const watcher = gulp.watch(typeDefFile, () => {
+                generateFile((err: any) => {
+                    if (err) {
+                        console.error('監聽模式生成失敗:', err);
+                    }
+                });
+            });
+            generateFile(done);
+            return watcher;
+        } else {
+            generateFile(done);
+        }
+    };
 /**
  * 将panorama/images目录下的jpg,png,psd文件集合到 dest 目录中的 image_precache.css文件中
  * 使用这个 task ，你可以在 game setup 阶段的时候，将所有的图片都编译而不用自己写
@@ -178,8 +263,12 @@ gulp.task('kv_2_js:watch', kv_2_js(true));
 gulp.task('csv_to_localization', csv_to_localization());
 gulp.task('csv_to_localization:watch', csv_to_localization(true));
 
-gulp.task('predev', gulp.series('sheet_2_kv', 'kv_2_js', 'csv_to_localization', 'create_image_precache'));
-gulp.task('dev', gulp.parallel('sheet_2_kv:watch', 'csv_to_localization:watch', 'create_image_precache:watch', 'kv_2_js:watch'));
+// ========== 新增的兩個任務註冊 ==========
+gulp.task('generate_custom_net_tables', generate_custom_net_tables());
+gulp.task('generate_custom_net_tables:watch', generate_custom_net_tables(true));
+
+gulp.task('predev', gulp.series('sheet_2_kv', 'kv_2_js', 'generate_custom_net_tables','csv_to_localization', 'create_image_precache'));
+gulp.task('dev', gulp.parallel('sheet_2_kv:watch', 'csv_to_localization:watch', 'create_image_precache:watch', 'kv_2_js:watch', 'generate_custom_net_tables:watch'));
 gulp.task('build', gulp.series('predev'));
 gulp.task('jssync', gulp.series('sheet_2_kv', 'kv_2_js'));
 gulp.task('kv_to_local', kv_to_local());

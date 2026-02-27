@@ -1,3 +1,4 @@
+/// <reference types="@moddota/dota-lua-types/normalized" />
 declare interface CustomNetTableDeclarations {
     game_timer: {
         game_timer: {
@@ -17,6 +18,13 @@ declare interface CustomNetTableDeclarations {
         key_1: number;
         key_2: string;
     };
-    player_data:any;
-    bag:any;
+    bag: {
+        [key: string]: {
+            [slot: number]: CDOTA_Item | -1;
+            switch?: boolean;
+        };
+    };
+    wu_xing: {
+        [key: string]: string[] | string[][]; // 玩家ID对应的元素列表
+    };
 }

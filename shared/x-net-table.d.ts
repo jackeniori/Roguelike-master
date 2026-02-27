@@ -1,9 +1,10 @@
-declare interface XNetTableDefinations {
+declare interface XNetTableDefinitions {
     test_table: {
         test_key: {
             data_1: string;
             data_2?: number;
             data_3?: boolean[];
+            data_t?: any;
         };
     };
     settings: {
@@ -22,20 +23,36 @@ declare interface CustomGameEventDeclarations {
     };
 }
 
-declare interface XNetTableObject {  
+declare interface XNetTableObject {
     table_name: string;
-    key: string; 
+    key: string;
     content: any;
 }
 
-declare interface XNetTableDataJSON {   
+declare interface XNetTableDataJSON {
     table: string;
     key: string;
     value: any;
 }
-// //补充接口
-// interface CScriptBindingPR_Abilities {
-//     UsesAbilityCharges(nEntityIndex: AbilityEntityIndex): boolean;
-//     GetCurrentAbilityCharges(nEntityIndex: AbilityEntityIndex): string | number;
-//     GetAbilityChargeRestoreTimeRemaining(nEntityIndex: AbilityEntityIndex): number;
-// }
+
+
+
+declare interface CScriptBindingPR_Abilities {
+    UsesAbilityCharges(nEntityIndex: number & {
+        _entityIndex: never;
+    } & {
+        _abilityEntityIndex: never;
+    }): boolean;
+
+    GetCurrentAbilityCharges(nEntityIndex: number & {
+        _entityIndex: never;
+    } & {
+        _abilityEntityIndex: never;
+    }): string | number;
+    
+    GetAbilityChargeRestoreTimeRemaining(nEntityIndex: number & {
+        _entityIndex: never;
+    } & {
+        _abilityEntityIndex: never;
+    }): number;
+}

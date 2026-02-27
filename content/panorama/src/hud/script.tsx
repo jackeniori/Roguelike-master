@@ -15,7 +15,7 @@ import { BagCustomTooltip } from './components/bag_tooltip';
 import { CustomDrag } from './components/custom_drag';
 import { PuzzlePanel } from './components/test/puzzle';
 import { ThePubicRegionPanel } from './components/test/the_pubic_region';
-
+import { CharacterAttributesPanel } from './components/character_attributes';
 declare global {
     interface CDOTA_PanoramaScript_GameUI {
         global?: any;
@@ -36,6 +36,7 @@ function GameState() {
         render(<BagPanel />, $('#bag'));
         render(<MainPanel />, $('#main'));
 		render(<ThePubicRegionPanel />, $('#puzzle'));
+		//render(<CharacterAttributesPanel />, $('#character_attributes'));
         //render(<PuzzlePanel/>, $('#puzzle'));
 		//render(<UnitPanel />, $('#unit'));    //单位面板
         //HealthAboveUnit()   //血条

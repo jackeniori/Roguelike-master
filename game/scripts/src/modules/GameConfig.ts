@@ -1,13 +1,6 @@
 import {Button,MouseLeft,AbilitySort,AbilityPreviousNotice,KeyBindMove  } from '../libraries/button';
 import { Bag } from '../libraries/bag';
-declare global {
-    interface CDOTAPlayerController{
-        IsFirstSpawnEntity:CDOTA_BaseNPC;
-    }
-    interface CDOTAGameRules {
-        Addon: GameMode;
-    }
-}  
+import { WuXingElement, ElementGenerationConfig,WuXingElementGenerator } from '../libraries/wuxing';
 
 export class GameConfig {
     constructor() {
@@ -26,6 +19,7 @@ export class GameConfig {
 export class GameMode {
     players: {[key: number]: {
         IsFirstSpawnEntity: CDOTA_BaseNPC | null;
+        unit: { [key: string]: CDOTA_BaseNPC };
         Ability: { [key: string]: string };
         hero:{ PreviousNotice: number };
         bag;
@@ -72,6 +66,7 @@ export class GameMode {
         for(let i=0;i<=count;i++){
             this.players[i] = {
                 IsFirstSpawnEntity:null,
+                unit:{},
                 Ability:{},
                 hero:{PreviousNotice:0},
                 bag:new Bag('player_'+i,PlayerResource.GetPlayer(i as PlayerID),36,1,36),
@@ -170,7 +165,9 @@ function Test(this: void,userId: EntityIndex, event: {
         hero.StartGesture(GameActivity.DOTA_CAST_ABILITY_2);
     }else if(event.value=='ditu'){
         GameRules.Addon.players[PlayerID].grad_world = GradWorld(Vector(0,0,128),3,3,256,256)//origin
-        print('chuangjianditu')
+        //没有目标的特效附和在地面
+    }else if(event.value=='jueseshuxing'){
+        CustomGameEventManager.Send_ServerToPlayer<object>( PlayerResource.GetPlayer(PlayerID), "test",{value: 'jueseshuxing'})
         //没有目标的特效附和在地面
     }else if(event.value=='yincang'){
         CustomGameEventManager.Send_ServerToPlayer<object>( PlayerResource.GetPlayer(PlayerID), "test",{value: 'yincang'})
@@ -183,10 +180,19 @@ function Test(this: void,userId: EntityIndex, event: {
     }else if(event.value=='shanchuditu'){
         RemoveGradWorld(PlayerID)
     }else if(event.value=='beibao'){
-        //CustomGameEventManager.Send_ServerToPlayer<object>( PlayerResource.GetPlayer(PlayerID), "test",{value: 'beibao'})
+        CustomGameEventManager.Send_ServerToPlayer<object>( PlayerResource.GetPlayer(PlayerID), "test",{value: 'beibao'})
         GameRules.Addon.players[PlayerID].bag.Switch()
-        GameRules.Addon.players[PlayerID].bag.AddItem('item_abyssal_blade')
-    }
+        //GameRules.Addon.players[PlayerID].bag.AddItem('item_abyssal_blade')
+    }else if(event.value=='danweimianban'){
+        const generator = new WuXingElementGenerator();
+        const elements = generator.GenerateDantianGrid();
+        CustomNetTables.SetTableValue("wu_xing", "player_" + PlayerID, elements); 
+        }
+}
+
+function shengchengwuxing(PlayerID:PlayerID){
+    let wuxing = ("WuXingSystem.getAllTypes()")
+    CustomGameEventManager.Send_ServerToPlayer<object>( PlayerResource.GetPlayer(PlayerID), "shengchengwuxing",{wuxing:wuxing})
 }
 //原点,玩家,列,竖,宽,高
 function GradWorld(origin:Vector,x:number,y:number,width:number,height:number){

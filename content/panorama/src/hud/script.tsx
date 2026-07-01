@@ -22,7 +22,6 @@ declare global {
     }
 }
 
-
 function GameState() {
     $.Msg('kaishiyunxing     ',Game.GetState())
     if(Game.GetState() == DOTA_GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS){
@@ -40,6 +39,7 @@ function GameState() {
         //render(<PuzzlePanel/>, $('#puzzle'));
 		//render(<UnitPanel />, $('#unit'));    //单位面板
         //HealthAboveUnit()   //血条
+		//RegistersKeyBind('w')  
         return 
     }
     $.Schedule(1, GameState);
@@ -58,17 +58,8 @@ function HealthAboveUnit() {
 	}
 }
 
-RegistersKeyBind('w')
-RegistersKeyBind('a')
-RegistersKeyBind('s')
-RegistersKeyBind('d')
-RegistersKeyBind('space')
-RegistersKeyBind('f')
-RegistersKeyBind('1')
-RegistersKeyBind('2')
-RegistersKeyBind('3')
-RegistersKeyBind('q')
-RegistersKeyBind('e')
+
+
 
 function UpdateHeroIcon() {
     $.Schedule(0, UpdateHeroIcon);
@@ -87,6 +78,8 @@ function UpdateHeroIcon() {
         Particles.SetParticleControl(GameUI.global.MOVING_PCF, 2, [128, 128, 128]);
     }
 }
+
+
 
 function RegistersKeyBind(key:string){
     const command = `On${key}${Date.now()}`;
@@ -111,54 +104,56 @@ function RegistersKeyBind(key:string){
         1 << 32
     );
 }
-GameUI.SetMouseCallback( function( eventName, arg ) {
-	var CONSUME_EVENT = true;
-	var CONTINUE_PROCESSING_EVENT = false;
-	const pos = GameUI.GetCursorPosition();
-	const world_pos =  Game.ScreenXYToWorld(pos[0],pos[1])
-    $.Msg(world_pos)
-	if ( GameUI.GetClickBehaviors() !== CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE )
-		return CONTINUE_PROCESSING_EVENT;
+// 禁用 Dota 2 原版的鼠标操作（右键移动、双击选中、滚轮缩放）
 
-	if ( eventName == "pressed" )
-	{
-		// Left-click is move to position
-		if ( arg === 0 )
-		{
-            let pos = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition())
-            GameEvents.SendCustomGameEventToServer<object>('Button',{key:'',button:'mouse_left',pos:pos})
-			return CONSUME_EVENT;
-		}
+// 把左键点击转换成自定义事件
+// GameUI.SetMouseCallback( function( eventName, arg ) {
+// 	var CONSUME_EVENT = true;
+// 	var CONTINUE_PROCESSING_EVENT = false;
+// 	const pos = GameUI.GetCursorPosition();
+// 	const world_pos =  Game.ScreenXYToWorld(pos[0],pos[1])
+//     //$.Msg(world_pos)
+// 	if ( GameUI.GetClickBehaviors() !== CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE )
+// 		return CONTINUE_PROCESSING_EVENT;
 
-		// Disable right-click
-		if ( arg === 1 )
-		{
-			return CONSUME_EVENT;
-		}
-	}
-	else if ( eventName === "wheeled" )
-	{
-		if ( arg < 0 )
-		{
+// 	if ( eventName == "pressed" )
+// 	{
+		
+// 		if ( arg === 0 )
+// 		{
+//             let pos = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition())
+//             GameEvents.SendCustomGameEventToServer<object>('Button',{key:'',button:'mouse_left',pos:pos})
+// 			return CONSUME_EVENT;
+// 		}
 
-			return CONSUME_EVENT;		
-		}
-		else if ( arg > 0 )
-		{
+// 		// Disable right-click
+// 		if ( arg === 1 )
+// 		{
+// 			return CONSUME_EVENT;
+// 		}
+// 	}
+// 	else if ( eventName === "wheeled" )
+// 	{
+// 		if ( arg < 0 )
+// 		{
 
-			return CONSUME_EVENT;		
-		}
-	}
-	else if ( eventName === "released" )
-	{
-		return CONSUME_EVENT;		
-	}
-	else if ( eventName === "doublepressed" )
-	{
-		return CONSUME_EVENT;		
-	}
+// 			return CONSUME_EVENT;		
+// 		}
+// 		else if ( arg > 0 )
+// 		{
+
+// 			return CONSUME_EVENT;		
+// 		}
+// 	}
+// 	else if ( eventName === "released" )
+// 	{
+// 		return CONSUME_EVENT;		
+// 	}
+// 	else if ( eventName === "doublepressed" )
+// 	{
+// 		return CONSUME_EVENT;		
+// 	}
     
-    $.Msg(eventName, arg)
-	return CONTINUE_PROCESSING_EVENT;
-} );
+// 	return CONTINUE_PROCESSING_EVENT;
+// } );
 

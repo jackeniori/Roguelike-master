@@ -1,5 +1,6 @@
 import { Debug } from './Debug';
-import { GameConfig,GameMode } from './GameConfig';
+import { GameConfig } from './GameConfig';
+import { GameMode } from './GameMode';
 import { XNetTable } from './xnet-table';
 
 declare global {

@@ -25,6 +25,15 @@ declare interface CustomNetTableDeclarations {
         };
     };
     wu_xing: {
-        [key: string]: string[] | string[][]; // 玩家ID对应的元素列表
+        [key: string]:{
+            gridData?: string[][]; // 玩家ID对应的元素列表
+            initialRegion?: {           // 初始区域（可选，根据模式确定）
+                startX: number;
+                startY: number;
+                rows: number;
+                cols: number;
+            };
+            switch?: boolean;
+        }
     };
 }

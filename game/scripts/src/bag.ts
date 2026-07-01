@@ -149,7 +149,6 @@ class Bag {
             return false;
         }
         const bagSlot = this.GetNoUseSlot();
-
         if (bagSlot > 0) {
             this.__itemlist[bagSlot] = item;
             this.Update();
